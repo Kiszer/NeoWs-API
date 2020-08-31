@@ -97,3 +97,7 @@ const findByDate = async (firstDate, endDate, distance) =>{
     console.log(asteroids);
     return asteroids;
 }
+
+module.exports = {
+    
+}

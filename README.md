@@ -15,14 +15,15 @@ npm start server
 
 then from a terminal use curl (must be content-type:application/json) from a terminal, or similar tool, to see if there are any asteroids in your parameters. 
 
-Examples of proper Curl commands:
+###### Examples of proper Curl commands:
+
 curl -d '{   "dateStart": "2015-04-28",   "dateEnd": "2015-04-30",   "within": {     "value": 15000000,     "units": "miles"   } }' -H 'content-type: application/json' localhost:3000/api
 
 returns different results to user and server:
-### What the user will see: 
+###### What the user will see: 
 {"asteroids":["(2015 GB14)","(2015 HM1)","(2015 HD10)","(2017 JB)","(2015 HC1)","(2015 JJ)","(2019 HS2)","(2015 JB1)","(2015 DP155)","(2015 HA177)","(2011 EX4)"]}
 
-The server will see:
+###### What the server will see:
 There are 11 asteroids under 15000000
 They are: 
 {

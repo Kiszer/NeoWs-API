@@ -1,2 +1,59 @@
 # NeoWs-API
  Using data from the NASA JPL Asteroid team the NeoWs api lets us search for near earth objects.
+
+# Summary:
+This app takes in POST commands via curl to use as the inputs for the NeoWs API from NASA. When given two dates and a distance in miles, the user will receive back the asteroids that are within that distance from Earth within those dates. (note: if the dates are further than 7 days apart, it will change it to be 7, the max the api can take)
+
+# Installation:
+
+Once you are in the alulaProject directory run:
+npm install
+
+# How to use:
+run:
+npm start server
+
+then from a terminal use curl (must be content-type:application/json) from a terminal, or similar tool, to see if there are any asteroids in your parameters. 
+
+Examples of proper Curl commands:
+curl -d '{   "dateStart": "2015-04-28",   "dateEnd": "2015-04-30",   "within": {     "value": 15000000,     "units": "miles"   } }' -H 'content-type: application/json' localhost:3000/api
+
+returns different results to user and server:
+### What the user will see: 
+{"asteroids":["(2015 GB14)","(2015 HM1)","(2015 HD10)","(2017 JB)","(2015 HC1)","(2015 JJ)","(2019 HS2)","(2015 JB1)","(2015 DP155)","(2015 HA177)","(2011 EX4)"]}
+
+The server will see:
+There are 11 asteroids under 15000000
+They are: 
+{
+  asteroids: [
+    '(2015 GB14)',  '(2015 HM1)',
+    '(2015 HD10)',  '(2017 JB)',
+    '(2015 HC1)',   '(2015 JJ)',
+    '(2019 HS2)',   '(2015 JB1)',
+    '(2015 DP155)', '(2015 HA177)',
+    '(2011 EX4)'
+  ]
+}
+
+changing $value to 2000000 returns:
+
+
+returns:
+{"asteroids":["(2015 HD10)","(2015 HA177)"]} for the user
+and
+There are 2 asteroids under 2000000
+They are: 
+{ asteroids: [ '(2015 HD10)', '(2015 HA177)' ] } for the server
+
+
+For dev testing: 
+If you'd like to test changes to server consider using nodemon
+
+To use run:
+npm start devStart
+
+Every time you save the server.js file nodemon will restart 'node server.js' 
+
+
+

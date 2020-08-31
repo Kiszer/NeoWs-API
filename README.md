@@ -10,9 +10,9 @@ Once you are in the directory run:
 
 npm install
 
-You will also need to create a .env file to store your API key. Inside the .env file create a variable named NEOWS_API_KEY and put your NASA API key in here.
+You will also need to create a .env file to store your API key. Inside the .env file create a variable named NEOWS_API_KEY set it to your own NASA API key.
 
-Example (do not include the brackets in your .env file):
+#### Example (do not include the brackets in your .env file):
 
 NEOWS_API_KEY={YOUR API KEY HERE}
 
@@ -21,6 +21,14 @@ run:
 npm start server
 
 then from a terminal use curl (must be content-type:application/json) from a terminal, or similar tool, to see if there are any asteroids in your parameters. 
+
+### Variables needed to run:
+
+1. dateStart: This is be the first day in the range that you want to look for near earth objects.
+2. dateEnd: This is end date in the range that you want to look for near earth objects. (Note: if dateEnd is more than 7 days further than dateStart, it will be changed to 7 days, as that is the limit of the NeoWs API).
+3. within: There are two variables needed inside of within
+   - value: Distance of the near earth objects from earth
+   - units: Unit of length. Currently only "miles" is accepted.
 
 #### Example of proper Curl command:
 

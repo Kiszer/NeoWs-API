@@ -1,0 +1,19 @@
+{
+  "name": "neows-api",
+  "version": "1.0.0",
+  "description": "Using data from the NASA JPL Asteroid team the NeoWs api lets us search for near earth objects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiszer/NeoWs-API.git"
+  },
+  "author": "Nick Kiszer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kiszer/NeoWs-API/issues"
+  },
+  "homepage": "https://github.com/Kiszer/NeoWs-API#readme"
+}

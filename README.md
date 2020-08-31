@@ -44,7 +44,7 @@ They are:
   ]
 }
 
-#### By changing $value to 2000000 our results will change:
+##### By changing $value to 2000000 our results will change:
 
 ##### What the user will see: 
 
@@ -62,9 +62,7 @@ They are:
 If you'd like to test changes to server consider using nodemon
 
 To use run:
+
 npm start devStart
 
-Every time you save the server.js file nodemon will restart 'node server.js' 
-
-
-
+devStart runs "nodemon server.js" to allow for instant restarting of the server to allow for better testing of changes.

@@ -27,7 +27,7 @@ Then, from a terminal use a curl command, or similar tool, to see if there are a
 
 1. dateStart: This is be the first day in the range that you want to look for near earth objects.
 2. dateEnd: This is end date in the range that you want to look for near earth objects. (Note: if dateEnd is more than 7 days further than dateStart, it will be changed to 7 days, as that is the limit of the NeoWs API).
-3. within: There are two variables needed inside of within
+3. within: There are two values needed inside of within
    - value: Distance of the near earth objects from earth
    - units: Unit of length. Currently only "miles" is accepted.
 

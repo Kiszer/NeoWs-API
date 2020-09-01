@@ -42,62 +42,59 @@ const getRangeOfDates = (firstDate, endDate) => {
     }
 }
 
-
-/**
- * Summary. Function designed to connect to api. 
- * If any asteroids are within the distance it will return them as a JSON array
- * @param {Date} firstDate 
- * @param {Date} endDate 
- * @param {miles} distance 
- * @returns{array}
- */
-const findByDate = async (firstDate, endDate, distance) =>{
-
-    //Create variables we will need 
-    const apiKey = process.env.NEOWS_API_KEY;
-    if('NEOWS_API_KEY' in process.env){
-        const apiKey = process.env.NEOWS_API_KEY;
-    }
-    else{
-        const apiKey = 'DEMO_KEY';
-    }
-    let apiUrl = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=';
-    let apiData = new Array();
-    //create asteroids array so when we can call it even if it's empty
-    let asteroids = {
-        "asteroids": []
-    };
-    try{
-        //build the array of dates and use it to finish building the apiURL
-        let datesOfLookup = getRangeOfDates(firstDate, endDate);
-
-        apiUrl = apiUrl + datesOfLookup[0] + '&end_date=' + datesOfLookup[datesOfLookup.length-1] + '&detailed=false&api_key=' + apiKey;
-
-        //Use GET /rest/v1/feed from NeoWs
-        const response = await axios.get(apiUrl).then(function(response){
-            apiData.push(response.data.near_earth_objects);
-        });
-        apiData = apiData[0];
-
-        //loop through the data and store any asteroid less than our distance in asteroids array
-        for(let i = 0; i < datesOfLookup.length; i++){
-            for(let j = 0; j < apiData[datesOfLookup[i]].length; j++){
-                if(apiData[datesOfLookup[i]][j].close_approach_data[0].miss_distance.miles < distance){
-                    asteroids.asteroids.push(apiData[datesOfLookup[i]][j].name);
-                }
-
-            }
-        }
-        console.log('There are ' + asteroids.asteroids.length + ' asteroids under ' + distance);
-    }catch(e){
-        console.error(e);
-    }
-
-    console.log('They are: ');
-    console.log(asteroids);
-    return asteroids;
-}
-
 module.exports = {
+    /**
+     * Summary. Function designed to connect to api. 
+     * If any asteroids are within the distance it will return them as a JSON array
+     * @param {Date} firstDate 
+     * @param {Date} endDate 
+     * @param {miles} distance 
+     * @returns{array}
+     */
+    findByDate: async (firstDate, endDate, distance) =>{
+
+        //Create variables we will need 
+        const apiKey = process.env.NEOWS_API_KEY;
+        if('NEOWS_API_KEY' in process.env){
+            const apiKey = process.env.NEOWS_API_KEY;
+        }
+        else{
+            const apiKey = 'DEMO_KEY';
+        }
+        let apiUrl = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=';
+        let apiData = new Array();
+        //create asteroids array so when we can call it even if it's empty
+        let asteroids = {
+            "asteroids": []
+        };
+        try{
+            //build the array of dates and use it to finish building the apiURL
+            let datesOfLookup = getRangeOfDates(firstDate, endDate);
     
+            apiUrl = apiUrl + datesOfLookup[0] + '&end_date=' + datesOfLookup[datesOfLookup.length-1] + '&detailed=false&api_key=' + apiKey;
+    
+            //Use GET /rest/v1/feed from NeoWs
+            const response = await axios.get(apiUrl).then(function(response){
+                apiData.push(response.data.near_earth_objects);
+            });
+            apiData = apiData[0];
+    
+            //loop through the data and store any asteroid less than our distance in asteroids array
+            for(let i = 0; i < datesOfLookup.length; i++){
+                for(let j = 0; j < apiData[datesOfLookup[i]].length; j++){
+                    if(apiData[datesOfLookup[i]][j].close_approach_data[0].miss_distance.miles < distance){
+                        asteroids.asteroids.push(apiData[datesOfLookup[i]][j].name);
+                    }
+    
+                }
+            }
+            console.log('There are ' + asteroids.asteroids.length + ' asteroids under ' + distance);
+        }catch(e){
+            console.error(e);
+        }
+    
+        console.log('They are: ');
+        console.log(asteroids);
+        return asteroids;
+    }
 }

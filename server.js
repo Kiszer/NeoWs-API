@@ -9,7 +9,7 @@ const getByDates = require('./src/getbydates');
 app.use(express.json());
 app.use(express.static('public'));
 
-//post function
+//Express POST route
 app.post('/api', async (req, res) => {
     if(req.is("application/json")){
         

@@ -82,13 +82,13 @@ module.exports = {
             //loop through the data and store any asteroid less than our distance in asteroids array
             for(let i = 0; i < datesOfLookup.length; i++){
                 for(let j = 0; j < apiData[datesOfLookup[i]].length; j++){
-                    if(apiData[datesOfLookup[i]][j].close_approach_data[0].miss_distance.miles < distance){
+                    if(apiData[datesOfLookup[i]][j].close_approach_data[0].miss_distance.miles <= distance){
                         asteroids.asteroids.push(apiData[datesOfLookup[i]][j].name);
                     }
     
                 }
             }
-            console.log('There are ' + asteroids.asteroids.length + ' asteroids under ' + distance);
+            console.log('There are ' + asteroids.asteroids.length + ' asteroids within ' + distance);
         }catch(e){
             console.error(e);
         }

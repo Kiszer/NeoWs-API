@@ -3,15 +3,14 @@ if(process.env.NODE_ENV !== 'production'){
 }
 const express = require('express');
 const app = express();
-const axios = require('axios');
 const getByDates = require('./src/getbydates');
 
 //We need to accept JSON, so use json middleware. 
 app.use(express.json());
 app.use(express.static('public'));
 
+//post function
 app.post('/api', async (req, res) => {
-    let test = req.body;
     if(req.is("application/json")){
         
         //Input Json variable to be used in NeoWs api call
@@ -44,7 +43,6 @@ app.post('/api', async (req, res) => {
         res.send('content-type: application/json expected in curl call\n')   
     }
 });
-
 
 //Start server on localhost:3000
 app.listen(3000, () => {

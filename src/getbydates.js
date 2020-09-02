@@ -23,7 +23,7 @@ const getRangeOfDates = (firstDate, endDate) => {
     let differenceInDays = (endDate.getTime() - firstDate.getTime()) / (1000 * 3600 * 24);
     
     //Create array of dates to be used
-    if(differenceInDays <= 7){
+    if(differenceInDays <= 7 && differenceInDays >= 0){
 
         while (tempDate <= endDate) {
 
@@ -33,7 +33,7 @@ const getRangeOfDates = (firstDate, endDate) => {
         return dates;
     }
     else{
-        console.log("Date range is greater than 7. Changing to 7 instead")
+        console.log("Date range is out of scope. Changing to 7 instead")
         for(let i = 0; i < 7; i++){
             dates = [...dates, new Date(tempDate).toISOString().split('T')[0]];
             tempDate.setDate(tempDate.getDate() + 1);

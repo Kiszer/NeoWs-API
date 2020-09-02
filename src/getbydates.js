@@ -33,7 +33,7 @@ const getRangeOfDates = (firstDate, endDate) => {
         return dates;
     }
     else{
-        console.log("Date range is out of scope. Changing to 7 instead")
+        console.log("Date range is out of scope. Defaulting to 7 days instead")
         for(let i = 0; i < 7; i++){
             dates = [...dates, new Date(tempDate).toISOString().split('T')[0]];
             tempDate.setDate(tempDate.getDate() + 1);
@@ -54,12 +54,12 @@ module.exports = {
     findByDate: async (firstDate, endDate, distance) =>{
 
         //Create variables we will need 
-        const apiKey = process.env.NEOWS_API_KEY;
+        let apiKey;
         if('NEOWS_API_KEY' in process.env){
-            const apiKey = process.env.NEOWS_API_KEY;
+            apiKey = process.env.NEOWS_API_KEY;
         }
         else{
-            const apiKey = 'DEMO_KEY';
+            apiKey = 'DEMO_KEY';
         }
         let apiUrl = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=';
         let apiData = new Array();
